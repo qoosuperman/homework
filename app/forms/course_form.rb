@@ -37,8 +37,8 @@ class CourseForm < BaseForm
           chapter.sections.build(attrs)
         end
         section_order += 1
-      end
-    end
+      end if chapter_attrs[:sections]
+    end if attributes[:chapters]
   end
 
   def save

@@ -147,7 +147,21 @@ describe '/courses', type: :request do
     end
 
     context 'when no chapters and sections provided' do
-      # TODO
+      let(:params) do
+        {
+          course: {
+            name: 'course_name',
+            teacher_name: 'teacher_name',
+            description: 'course_description'
+          }
+        }
+      end
+      it do
+        expect { do_post }.to change { Course.all.size }.from(0).to(1)
+        expect(Chapter.all.size).to be(0)
+        expect(Section.all.size).to be(0)
+        expect(json['chapters']).to eq([])
+      end
     end
   end
 
